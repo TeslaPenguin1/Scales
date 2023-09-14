@@ -7,13 +7,12 @@ void setup() {
   background(0);
   noStroke();
   noFill();
-  colorMode(HSB);
 }
 
 void draw() {
   boolean shift = false;
   int xshift = 0;
-  colorMode(HSB);
+  //colorMode(HSB);
   delta++;
   int drawDelta = delta;
   for(int y=0;y<=1000;y+=20) {
@@ -48,7 +47,7 @@ void quadGradient(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4
   //Creates a gradient from (x1,y1,x4,y4) to (x2,y2,x3,y3)
   //dir: 1=down,2=right,3=up,4=left
   noFill();
-  colorMode(RGB);
+  //colorMode(RGB);
   if (dir == 1) {
     for (int i = y1; i <= y4; i++) {
       float inter = map(i, y1, y4, 0, 1);
@@ -98,7 +97,7 @@ void quadGradient(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4
 void arcGradient(float x, float y, int w1, int h1, int w2, int h2, float p1, float p2, color c1, color c2) {
   //w2 and h2 must be greater than w1 and h1 respectively
   noFill();
-  colorMode(RGB);
+  //colorMode(RGB);
   if ((w2-w1) >= (h2-h1)) {
     for (int i = w1; i <= w2; i++) {
      float inter = map(i, w1, w2, 0, 1);
