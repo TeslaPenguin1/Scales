@@ -16,7 +16,7 @@ void draw() {
   delta++;
   int drawDelta = delta;
   for(int y=0;y<=1000;y+=20) {
-    colorMode(HSB);
+    //colorMode(HSB);
     color c3 = color(colorFixed(drawDelta),255,255);
     color c4 = color(colorFixed(drawDelta-100),255,255);
     for(int x=0;x<=1000;x+=60) {
