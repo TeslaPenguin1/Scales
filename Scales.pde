@@ -1,7 +1,6 @@
 color c1 = #000000;
 color c2 = #FFFFFF;
 int delta = 0;
-import java.awt.Color;
 
 void setup() {
   size(1000,1000);
@@ -16,9 +15,8 @@ void draw() {
   delta++;
   int drawDelta = delta;
   for(int y=0;y<=1000;y+=20) {
-    //colorMode(HSB);
-    color c3 = color(Color.HSBtoRGB((colorFixed(drawDelta)/255.0),1,1));
-    color c4 = color(Color.HSBtoRGB((colorFixed(drawDelta-100)/255.0),1,1));
+    color c3 = color(HSBtoRGB((colorFixed(drawDelta)/255.0),1,1));
+    color c4 = color(HSBtoRGB((colorFixed(drawDelta-100)/255.0),1,1));
     for(int x=0;x<=1000;x+=60) {
       scale(x+xshift+5,y-15,c3,c4);
     }
@@ -115,3 +113,50 @@ void arcGradient(float x, float y, int w1, int h1, int w2, int h2, float p1, flo
     }
   }
 }
+
+
+public static int HSBtoRGB(float hue, float saturation, float brightness) {
+        int r = 0, g = 0, b = 0;
+        if (saturation == 0) {
+            r = g = b = (int) (brightness * 255.0f + 0.5f);
+        } else {
+            float h = (hue - (float)Math.floor(hue)) * 6.0f;
+            float f = h - (float)java.lang.Math.floor(h);
+            float p = brightness * (1.0f - saturation);
+            float q = brightness * (1.0f - saturation * f);
+            float t = brightness * (1.0f - (saturation * (1.0f - f)));
+            switch ((int) h) {
+            case 0:
+                r = (int) (brightness * 255.0f + 0.5f);
+                g = (int) (t * 255.0f + 0.5f);
+                b = (int) (p * 255.0f + 0.5f);
+                break;
+            case 1:
+                r = (int) (q * 255.0f + 0.5f);
+                g = (int) (brightness * 255.0f + 0.5f);
+                b = (int) (p * 255.0f + 0.5f);
+                break;
+            case 2:
+                r = (int) (p * 255.0f + 0.5f);
+                g = (int) (brightness * 255.0f + 0.5f);
+                b = (int) (t * 255.0f + 0.5f);
+                break;
+            case 3:
+                r = (int) (p * 255.0f + 0.5f);
+                g = (int) (q * 255.0f + 0.5f);
+                b = (int) (brightness * 255.0f + 0.5f);
+                break;
+            case 4:
+                r = (int) (t * 255.0f + 0.5f);
+                g = (int) (p * 255.0f + 0.5f);
+                b = (int) (brightness * 255.0f + 0.5f);
+                break;
+            case 5:
+                r = (int) (brightness * 255.0f + 0.5f);
+                g = (int) (p * 255.0f + 0.5f);
+                b = (int) (q * 255.0f + 0.5f);
+                break;
+            }
+        }
+        return 0xff000000 | (r << 16) | (g << 8) | (b << 0);
+    }
