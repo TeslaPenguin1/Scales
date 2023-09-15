@@ -18,7 +18,7 @@ void draw() {
     color c3 = color(HSBtoRGB((colorFixed(drawDelta)/255.0),1,1));
     color c4 = color(HSBtoRGB((colorFixed(drawDelta-100)/255.0),1,1));
     for(int x=0;x<=500;x+=120) {
-      scale(x+xshift+5,y-30,c3,c4);
+      scale(x+xshift+5,y-25,c3,c4);
     }
     shift = !shift;
     if (shift) xshift = 60;
