@@ -14,14 +14,14 @@ void draw() {
   int xshift = 0;
   delta++;
   int drawDelta = delta;
-  for(int y=0;y<=1000;y+=20) {
+  for(int y=0;y<=1000;y+=30) {
     color c3 = color(HSBtoRGB((colorFixed(drawDelta)/255.0),1,1));
     color c4 = color(HSBtoRGB((colorFixed(drawDelta-100)/255.0),1,1));
-    for(int x=0;x<=1000;x+=60) {
-      scale(x+xshift+5,y-15,c3,c4);
+    for(int x=0;x<=1000;x+=90) {
+      scale(x+xshift+5,y-20,c3,c4);
     }
     shift = !shift;
-    if (shift) xshift = 30;
+    if (shift) xshift = 45;
     else xshift = 0;
     drawDelta-=2;
   }
@@ -34,14 +34,14 @@ int colorFixed(int x) {
     }
 
 void scale(int x, int y, color c1, color c2) {
-  arcGradient(x,y,0,4,40,20,PI,PI*2,c1,c2);
-  quadGradient(x,y,x,y+40,x+15,y+40,x+20,y,c1,c2,2);
-  quadGradient(x,y,x,y+40,x-15,y+40,x-20,y,c1,c2,4);
-  quadGradient(x,y+40,x,y+40,x,y+60,x+15,y+40,c1,c2,2);
-  quadGradient(x,y+40,x,y+40,x,y+60,x-15,y+40,c1,c2,4);
+  arcGradient(x,y,0,6,60,30,PI,PI*2,c1,c2);
+  quadGradient(x,y,x,y+60,x+22.5,y+60,x+30,y,c1,c2,2);
+  quadGradient(x,y,x,y+60,x-22.5,y+60,x-30,y,c1,c2,4);
+  quadGradient(x,y+60,x,y+60,x,y+90,x+22.5,y+60,c1,c2,2);
+  quadGradient(x,y+60,x,y+60,x,y+90,x-22.5,y+60,c1,c2,4);
 }
 
-void quadGradient(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, color c1, color c2, int dir) {
+void quadGradient(int x1, int y1, int x2, int y2, float x3, int y3, float x4, int y4, color c1, color c2, int dir) {
   //Creates a gradient from (x1,y1,x4,y4) to (x2,y2,x3,y3)
   //dir: 1=down,2=right,3=up,4=left
   noFill();
