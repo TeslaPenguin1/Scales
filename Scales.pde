@@ -1,6 +1,7 @@
 color c1 = #000000;
 color c2 = #FFFFFF;
 int delta = 0;
+import java.awt.Color;
 
 void setup() {
   size(1000,1000);
@@ -12,13 +13,12 @@ void setup() {
 void draw() {
   boolean shift = false;
   int xshift = 0;
-  //colorMode(HSB);
   delta++;
   int drawDelta = delta;
   for(int y=0;y<=1000;y+=20) {
     //colorMode(HSB);
-    color c3 = color(colorFixed(drawDelta),255,255);
-    color c4 = color(colorFixed(drawDelta-100),255,255);
+    color c3 = color(Color.HSBtoRGB((colorFixed(drawDelta)/255.0),1,1));
+    color c4 = color(Color.HSBtoRGB((colorFixed(drawDelta-100)/255.0),1,1));
     for(int x=0;x<=1000;x+=60) {
       scale(x+xshift+5,y-15,c3,c4);
     }
@@ -28,12 +28,12 @@ void draw() {
     drawDelta-=2;
   }
   delta+=5;
-}
+ }
 
 int colorFixed(int x) {
    byte colTest = (byte)(-128+x);
    return (int)colTest+128;
-  }
+    }
 
 void scale(int x, int y, color c1, color c2) {
   arcGradient(x,y,0,4,40,20,PI,PI*2,c1,c2);
@@ -47,7 +47,6 @@ void quadGradient(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4
   //Creates a gradient from (x1,y1,x4,y4) to (x2,y2,x3,y3)
   //dir: 1=down,2=right,3=up,4=left
   noFill();
-  //colorMode(RGB);
   if (dir == 1) {
     for (int i = y1; i <= y4; i++) {
       float inter = map(i, y1, y4, 0, 1);
@@ -97,7 +96,6 @@ void quadGradient(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4
 void arcGradient(float x, float y, int w1, int h1, int w2, int h2, float p1, float p2, color c1, color c2) {
   //w2 and h2 must be greater than w1 and h1 respectively
   noFill();
-  //colorMode(RGB);
   if ((w2-w1) >= (h2-h1)) {
     for (int i = w1; i <= w2; i++) {
      float inter = map(i, w1, w2, 0, 1);
