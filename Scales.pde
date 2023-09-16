@@ -16,6 +16,7 @@ void draw() {
     color c3 = color(HSBtoRGB((colorFixed(drawDelta)/255.0),1,1));
     color c4 = color(HSBtoRGB((colorFixed(drawDelta-100)/255.0),1,1));
     scale(y-25,c3,c4,shift);
+    if (y>=425) quadB2(y-25,c3,c4,shift);
     shift=!shift;
     drawDelta-=5;
   }
@@ -35,7 +36,6 @@ int shiftx(boolean shift) {
 void scale(int y, color c1, color c2, boolean shift) {
   arcGradient(y,c1,c2,shift);
   quadA2(y,c1,c2,shift);
-  quadB2(y,c1,c2,shift);
 }
 
 void quadB2(int y, color c1, color c2, boolean offset) {
